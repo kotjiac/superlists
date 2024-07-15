@@ -103,8 +103,15 @@ class NewVisitorTest(LiveServerTestCase):
 
     # Ela acessa essa URL -- sua lista de tarefas continua lá.
 
+		link = self.browser.find_element(By.ID, 'id_list_link')
+		link.click()
+		time.sleep(1)
+		self.wait_for_row_in_list_table('1: Comprar anzol - prioridade alta')
+		self.wait_for_row_in_list_table('2: Comprar cola instantânea - prioridade baixa')
+		
 
 """
+
 		# Ainda continua havendo uma caixa de texto convidando-a a 
 		# acrescentar outro item. Ela insere "Use peacock feathers 
 		# make a fly" (Usar penas de pavão para fazer um fly - 
