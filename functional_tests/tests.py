@@ -29,7 +29,7 @@ class NewVisitorTest(LiveServerTestCase):
 				if ((time.time() - start_time) > MAX_WAIT):
 					raise e
 				time.sleep(0.5)
-
+	
 	def test_can_start_a_list_for_one_user(self):
     # Edith ouviu falar que agora a aplicação online de lista de tarefas
     # aceita definir prioridades nas tarefas do tipo baixa, média e alta
@@ -73,6 +73,36 @@ class NewVisitorTest(LiveServerTestCase):
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
 		self.wait_for_row_in_list_table('1: Comprar anzol - prioridade alta')
+		
+    # Ainda continua havendo uma caixa de texto convidando-a a 
+    # acrescentar outro item. Ela insere "Comprar cola instantânea"
+    # e assinala prioridade baixa pois ela ainda tem cola suficiente
+    # por algum tempo
+		
+		inputbox = self.browser.find_element(By.ID, 'id_new_item')
+		selectbox = self.browser.find_element(By.ID, 'id_priority')
+
+		inputbox.send_keys('Comprar cola instantânea')
+		select = Select(selectbox)
+		select.select_by_visible_text('prioridade baixa')
+
+    # A página é atualizada novamente e agora mostra os dois
+    # itens em sua lista e as respectivas prioridades
+
+		inputbox.send_keys(Keys.ENTER)
+		time.sleep(1)
+		self.wait_for_row_in_list_table('1: Comprar anzol - prioridade alta')
+		self.wait_for_row_in_list_table('2: Comprar cola instantânea - prioridade baixa')
+
+    # Edith se pergunta se o site lembrará de sua lista. Então
+    # ela nota que o site gerou um URL único para ela -- há um 
+    # pequeno texto explicativo para isso.
+
+		div = self.browser.find_element(By.ID, 'id_url_unique')
+		self.assertIn('/lists/1', div.text)
+
+    # Ela acessa essa URL -- sua lista de tarefas continua lá.
+
 
 """
 		# Ainda continua havendo uma caixa de texto convidando-a a 
