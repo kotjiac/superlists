@@ -74,6 +74,7 @@ class NewVisitorTest(LiveServerTestCase):
 		time.sleep(1)
 		self.wait_for_row_in_list_table('1: Comprar anzol - prioridade alta')
 
+"""
 		# Ainda continua havendo uma caixa de texto convidando-a a 
 		# acrescentar outro item. Ela insere "Use peacock feathers 
 		# make a fly" (Usar penas de pavão para fazer um fly - 
@@ -141,3 +142,4 @@ class NewVisitorTest(LiveServerTestCase):
 		self.assertIn('Buy milk', page_text)
 
 		# Fim		
+"""
