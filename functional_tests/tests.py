@@ -30,17 +30,18 @@ class NewVisitorTest(LiveServerTestCase):
 				time.sleep(0.5)
 
 	def test_can_start_a_list_for_one_user(self):
-		# Edith ouviu falar de uma nova aplicação online interessante
-		# para lista de tarefas. Ela decide verificar a homepage
+    # Edith ouviu falar que agora a aplicação online de lista de tarefas
+    # aceita definir prioridades nas tarefas do tipo baixa, média e alta
+    # Ela decide verificar a homepage
 
 		self.browser.get(self.live_server_url)
 
-		# Ela percebe que o título da página e o cabeçalho mencionam
-		# listas de tarefas (to-do)
+    # Ela percebe que o título da página e o cabeçalho mencionam
+    # listas de tarefas com prioridade (priority to-do)
 
-		self.assertIn('To-Do', self.browser.title)
+		self.assertIn('Priority To-Do', self.browser.title)
 		header_text = self.browser.find_element(By.TAG_NAME, 'h1').text
-		self.assertIn('To-Do', header_text)
+		self.assertIn('Priority To-Do', header_text)
 		
 		# Ela é convidada a inserir um item de tarefa imediatamente
 
