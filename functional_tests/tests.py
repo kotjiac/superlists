@@ -43,13 +43,21 @@ class NewVisitorTest(LiveServerTestCase):
 		header_text = self.browser.find_element(By.TAG_NAME, 'h1').text
 		self.assertIn('Priority To-Do', header_text)
 		
-		# Ela é convidada a inserir um item de tarefa imediatamente
+    # Ela é convidada a inserir um item de tarefa e a prioridade da 
+    # mesma imediatamente
 
 		inputbox = self.browser.find_element(By.ID, 'id_new_item')
 		self.assertEqual(
 			inputbox.get_attribute('placeholder'),
 			'Enter a to-do item'
 		)
+
+		selectbox = self.browser.find_element(By.ID, 'id_priority')
+		self.assertEqual(
+			selectbox.get_attribute('placeholder'),
+			'Enter a priority'
+		)
+    
 
 		# Ela digita "Buy peacock feathers" (Comprar penas de pavão)
 		# em uma nova caixa de texto (o hobby de Edith é fazer iscas
