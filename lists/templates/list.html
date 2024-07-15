@@ -18,5 +18,7 @@
 			<tr><td>{{ forloop.counter }}: {{ item.text }} - {{item.priority}}</td></tr>
 			{% endfor %}
 		</table>
+    <br />
+    <div id="id_url_unique">URL único: <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.path }}">{{ request.path }}</a></div>
 	</body>
 </html>
