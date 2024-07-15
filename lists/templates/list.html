@@ -19,6 +19,6 @@
 			{% endfor %}
 		</table>
     <br />
-    <div id="id_url_unique">URL único: <a href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.path }}">{{ request.path }}</a></div>
+    <div id="id_url_unique">URL único: <a id="id_list_link" href="{{ request.scheme }}://{{ request.META.HTTP_HOST }}{{ request.path }}">{{ request.path }}</a></div>
 	</body>
 </html>
