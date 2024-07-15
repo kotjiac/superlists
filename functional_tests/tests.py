@@ -3,6 +3,7 @@ from selenium import webdriver
 from selenium.common.exceptions import WebDriverException
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.select import Select
 import time
 
 MAX_WAIT = 10
@@ -58,21 +59,20 @@ class NewVisitorTest(LiveServerTestCase):
 			'Enter a priority'
 		)
     
+    # Ela digita "Comprar anzol" em uma nova caixa de texto
+    # e assinala prioridade alta no campo de seleção de prioridades
 
-		# Ela digita "Buy peacock feathers" (Comprar penas de pavão)
-		# em uma nova caixa de texto (o hobby de Edith é fazer iscas
-		# para pesca com fly)
+		inputbox.send_keys('Comprar anzol')
+		select = Select(selectbox)
+		select.select_by_visible_text('prioridade alta')
 
-		inputbox.send_keys('Buy peacock feathers')
-
-
-		# Quando ela tecla enter, a página é atualizada, e agora
-		# a página lista "1 - Buy peacock feathers" como um item em 
-		# uma lista de tarefas
+    # Quando ela tecla enter, a página é atualizada, e agora
+    # a página lista "1 - Comprar anzol - prioridade alta"
+    # como um item em uma lista de tarefas
 
 		inputbox.send_keys(Keys.ENTER)
 		time.sleep(1)
-		self.wait_for_row_in_list_table('1: Buy peacock feathers')
+		self.wait_for_row_in_list_table('1: Comprar anzol - prioridade alta')
 
 		# Ainda continua havendo uma caixa de texto convidando-a a 
 		# acrescentar outro item. Ela insere "Use peacock feathers 
